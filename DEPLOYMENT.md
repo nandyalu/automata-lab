@@ -100,11 +100,10 @@ Actions → New repository secret):
 - [wrangler.jsonc](wrangler.jsonc) sets
   `assets.not_found_handling: "single-page-application"`, which makes
   client-side routes (`/game-of-life`, `/maze`, etc.) resolve correctly
-  instead of 404ing on a hard refresh or direct link.
-- `public/_redirects` (contains `/* /index.html 200`) is kept as a
-  belt-and-suspenders fallback — Workers Static Assets honors it the same
-  way Pages did — but `wrangler.jsonc`'s `not_found_handling` is the primary
-  mechanism now.
+  instead of 404ing on a hard refresh or direct link. There is deliberately
+  no `public/_redirects` file — Workers Static Assets' redirects validator
+  rejects a Pages-style `/* /index.html 200` catch-all as an infinite loop,
+  so `not_found_handling` is the only SPA-fallback mechanism here.
 - Manual and CI/CD deploys both write to the same Worker, so whichever ran
   most recently is what's live — avoid running both at once for the same
   change.
