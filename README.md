@@ -1,59 +1,42 @@
-# AntExperiment
+# Automata Lab
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+A collection of interactive cellular-automaton and generative-art simulations,
+each showing how complex, often unpredictable patterns emerge from a handful
+of simple rules.
 
-## Development server
+**Live:** [ic443.link](https://ic443.link) · [labs.ic443.link](https://labs.ic443.link)
 
-To start a local development server, run:
+## Experiments
 
-```bash
-ng serve
-```
+- **[Langton's Ant](https://ic443.link/langtons-ant)** — a single ant flips
+  cells black/white on a grid using two rules, wanders chaotically for
+  ~10,000 steps, then locks into an endlessly repeating diagonal "highway."
+- **[Conway's Game of Life](https://ic443.link/game-of-life)** — the classic
+  zero-player cellular automaton where four rules about live neighbors are
+  enough to support universal computation.
+- **[Boids](https://ic443.link/boids)** — flocking birds emerge from three
+  local steering forces (separation, alignment, cohesion) with no leader and
+  no choreography, the same model used for the bat swarm in *Batman Returns*.
+- **[Chaos Game](https://ic443.link/chaos-game)** — jumping repeatedly toward
+  a randomly chosen vertex produces the deterministic Sierpiński triangle,
+  the discovery behind fractal image compression.
+- **[Reaction-Diffusion](https://ic443.link/reaction-diffusion)** — two
+  virtual chemicals feeding, reacting, and diffusing across a grid produce
+  spots, stripes, and mazes — Turing's 1952 model for animal coat patterns.
+- **[Maze (Wilson's Algorithm)](https://ic443.link/maze)** — generates a
+  maze via loop-erased random walks so every possible spanning tree is
+  equally likely, then solves it with A*.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Each simulation includes an info panel with more on its history and how the
+algorithm works.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Development
 
 ```bash
-ng test
+npm start   # dev server at http://localhost:4200
+npm test    # run unit tests with Vitest
 ```
 
-## Running end-to-end tests
+## Deployment
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for how this is built and deployed.

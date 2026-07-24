@@ -1,0 +1,33 @@
+<canvas #canvas aria-hidden="true"></canvas>
+<div class="controls" role="toolbar" aria-label="Simulation controls">
+  <button type="button" (click)="togglePlay()" [attr.aria-pressed]="isRunning()">
+    {{ isRunning() ? 'Pause' : 'Play' }}
+  </button>
+  <button type="button" (click)="randomize()">Randomize</button>
+  <label class="speed-label" for="gol-speed">
+    Speed
+    <input
+      id="gol-speed"
+      type="range"
+      min="1"
+      max="60"
+      [value]="stepsPerFrame()"
+      (input)="onSpeedChange($event)"
+    />
+    <span>{{ stepsPerFrame() }}x</span>
+  </label>
+  <span class="stat">Gen {{ generation().toLocaleString() }}</span>
+  <span class="stat right">{{ population().toLocaleString() }} alive</span>
+</div>
+
+<app-info-panel heading="Conway's Game of Life">
+  <p>Invented by mathematician <strong>John Horton Conway</strong> in 1970 and introduced to the world by Martin Gardner in <em>Scientific American</em>. Conway designed it to be the simplest possible ruleset that could support universal computation.</p>
+  <p>Each cell lives or dies each generation by four rules:</p>
+  <ul>
+    <li>Fewer than 2 live neighbors → <strong>dies</strong> (underpopulation)</li>
+    <li>2 or 3 live neighbors → <strong>survives</strong></li>
+    <li>More than 3 live neighbors → <strong>dies</strong> (overpopulation)</li>
+    <li>Exactly 3 neighbors → <strong>becomes alive</strong> (reproduction)</li>
+  </ul>
+  <p>Conway later proved Life is <strong>Turing complete</strong> — a working computer can be built inside it using gliders and logic gates. It remains one of the most studied systems in recreational mathematics and complexity theory. Conway passed away in 2020.</p>
+</app-info-panel>

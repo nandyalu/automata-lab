@@ -1,0 +1,90 @@
+<canvas #canvas aria-hidden="true"></canvas>
+<div class="controls" role="toolbar" aria-label="Simulation controls">
+  <button type="button" (click)="togglePlay()" [attr.aria-pressed]="isRunning()">
+    {{ isRunning() ? 'Pause' : 'Play' }}
+  </button>
+  <button type="button" (click)="reset()">Reset</button>
+
+  <label class="slider-label" for="boids-count">
+    Boids
+    <input
+      id="boids-count"
+      type="range"
+      min="10"
+      max="300"
+      step="1"
+      [value]="boidCount()"
+      (input)="onBoidCountChange($event)"
+    />
+    <span>{{ boidCount() }}</span>
+  </label>
+
+  <label class="slider-label" for="boids-speed">
+    Speed
+    <input
+      id="boids-speed"
+      type="range"
+      min="1"
+      max="6"
+      step="0.5"
+      [value]="maxSpeed()"
+      (input)="onMaxSpeedChange($event)"
+    />
+    <span>{{ maxSpeed() }}</span>
+  </label>
+
+  <div class="separator" aria-hidden="true"></div>
+
+  <label class="slider-label" for="boids-separation">
+    Separation
+    <input
+      id="boids-separation"
+      type="range"
+      min="0"
+      max="3"
+      step="0.1"
+      [value]="separationWeight()"
+      (input)="onSeparationChange($event)"
+    />
+    <span>{{ separationWeight().toFixed(1) }}</span>
+  </label>
+
+  <label class="slider-label" for="boids-alignment">
+    Alignment
+    <input
+      id="boids-alignment"
+      type="range"
+      min="0"
+      max="3"
+      step="0.1"
+      [value]="alignmentWeight()"
+      (input)="onAlignmentChange($event)"
+    />
+    <span>{{ alignmentWeight().toFixed(1) }}</span>
+  </label>
+
+  <label class="slider-label" for="boids-cohesion">
+    Cohesion
+    <input
+      id="boids-cohesion"
+      type="range"
+      min="0"
+      max="3"
+      step="0.1"
+      [value]="cohesionWeight()"
+      (input)="onCohesionChange($event)"
+    />
+    <span>{{ cohesionWeight().toFixed(1) }}</span>
+  </label>
+</div>
+
+<app-info-panel heading="Boids">
+  <p>Created by <strong>Craig Reynolds</strong> and presented at SIGGRAPH 1987 in his paper <em>"Flocks, Herds, and Schools: A Distributed Behavioral Model."</em> Reynolds wanted to show that realistic collective motion needed no choreographer — only local rules.</p>
+  <p>Each boid steers by three forces:</p>
+  <ul>
+    <li><strong>Separation</strong> — avoid crowding nearby neighbors</li>
+    <li><strong>Alignment</strong> — match the average heading of the neighborhood</li>
+    <li><strong>Cohesion</strong> — move toward the neighborhood's center of mass</li>
+  </ul>
+  <p>Boids was used in <em>Batman Returns</em> (1992) for the bat and penguin swarm sequences — one of the first uses of autonomous agents in film VFX. Reynolds received an <strong>Academy Award for Technical Achievement</strong> in 1998. The model has since influenced robotics, AI, and the study of biological swarms.</p>
+</app-info-panel>

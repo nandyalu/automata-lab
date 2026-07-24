@@ -1,0 +1,36 @@
+<canvas #canvas aria-hidden="true"></canvas>
+<div class="controls" role="toolbar" aria-label="Simulation controls">
+  <button type="button" (click)="generate()" [disabled]="!canGenerate()">Generate</button>
+  <button type="button" (click)="solve()" [disabled]="!canSolve()">Solve</button>
+  <button type="button" (click)="reset()">Reset</button>
+
+  <div class="separator" aria-hidden="true"></div>
+
+  <label class="slider-label" for="maze-speed">
+    Speed
+    <input
+      id="maze-speed"
+      type="range"
+      min="1"
+      max="200"
+      step="1"
+      [value]="speed()"
+      (input)="onSpeedChange($event)"
+    />
+    <span>{{ speed() }}</span>
+  </label>
+
+  <span class="status">{{ stage() }}</span>
+</div>
+
+<app-info-panel heading="Wilson's Algorithm">
+  <p>Described by <strong>David Bruce Wilson</strong> in 1996 in his paper <em>"Generating Random Spanning Trees More Quickly than the Cover Time."</em></p>
+  <p>The algorithm uses a <strong>Loop-Erased Random Walk</strong> (LERW):</p>
+  <ul>
+    <li>Mark one cell as the maze</li>
+    <li>Pick any unvisited cell; random walk until you hit the maze</li>
+    <li>Erase any loops in the walk, then carve the path into the maze</li>
+    <li>Repeat until every cell is connected</li>
+  </ul>
+  <p>Unlike recursive backtracking or Prim's, Wilson's samples uniformly over <em>all possible spanning trees</em> — every maze is equally probable. Pathfinding uses <strong>A*</strong> with Manhattan distance heuristic from the cyan start (top-left) to the gold goal (bottom-right).</p>
+</app-info-panel>

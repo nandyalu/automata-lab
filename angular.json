@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ant_experiment": {
+    "automata-lab": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ant_experiment:build:production"
+              "buildTarget": "automata-lab:build:production"
             },
             "development": {
-              "buildTarget": "ant_experiment:build:development"
+              "buildTarget": "automata-lab:build:development"
             }
           },
           "defaultConfiguration": "development"

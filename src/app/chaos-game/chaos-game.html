@@ -1,0 +1,61 @@
+<canvas #canvas aria-hidden="true"></canvas>
+<div class="controls" role="toolbar" aria-label="Simulation controls">
+  <button type="button" (click)="togglePlay()" [attr.aria-pressed]="isRunning()">
+    {{ isRunning() ? 'Pause' : 'Play' }}
+  </button>
+  <button type="button" (click)="reset()">Reset</button>
+
+  <label class="slider-label" for="chaos-vertices">
+    Vertices
+    <input
+      id="chaos-vertices"
+      type="range"
+      min="3"
+      max="6"
+      step="1"
+      [value]="vertexCount()"
+      (input)="onVertexCountChange($event)"
+    />
+    <span>{{ vertexCount() }}</span>
+  </label>
+
+  <label class="slider-label" for="chaos-ratio">
+    Jump ratio
+    <input
+      id="chaos-ratio"
+      type="range"
+      min="0.3"
+      max="0.75"
+      step="0.05"
+      [value]="jumpRatio()"
+      (input)="onJumpRatioChange($event)"
+    />
+    <span>{{ jumpRatio().toFixed(2) }}</span>
+  </label>
+
+  <label class="slider-label" for="chaos-speed">
+    Speed
+    <input
+      id="chaos-speed"
+      type="range"
+      min="1"
+      max="100"
+      step="1"
+      [value]="pointsPerFrame()"
+      (input)="onSpeedChange($event)"
+    />
+    <span>{{ pointsPerFrame().toLocaleString() }}/f</span>
+  </label>
+
+  <span class="stat right">{{ totalPoints().toLocaleString() }} pts</span>
+</div>
+
+<app-info-panel heading="Chaos Game">
+  <p>Popularised by mathematician <strong>Michael Barnsley</strong> in his 1988 book <em>Fractals Everywhere</em> as a way to generate fractals through randomness. The underlying triangle was first described by <strong>Wacław Sierpiński</strong> in 1915.</p>
+  <p>The algorithm: pick a random vertex, jump partway toward it, plot the point — repeat.</p>
+  <ul>
+    <li><strong>3 vertices, ratio 0.5</strong> — the Sierpiński triangle</li>
+    <li>Adjusting <strong>vertices</strong> or <strong>jump ratio</strong> produces entirely different fractals</li>
+  </ul>
+  <p>Barnsley's insight was that deterministic fractal structures can be <em>recovered</em> from a random process — a discovery that led directly to <strong>fractal image compression</strong>, used commercially in the 1990s to store images at far higher ratios than JPEG. The fractal is self-similar at every scale: zoom into any corner and the whole triangle reappears.</p>
+</app-info-panel>

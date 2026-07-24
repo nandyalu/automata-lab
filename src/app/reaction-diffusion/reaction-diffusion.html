@@ -1,0 +1,75 @@
+<canvas #canvas aria-hidden="true"></canvas>
+<div class="controls" role="toolbar" aria-label="Simulation controls">
+  <button type="button" (click)="togglePlay()" [attr.aria-pressed]="isRunning()">
+    {{ isRunning() ? 'Pause' : 'Play' }}
+  </button>
+  <button type="button" (click)="reset()">Reset</button>
+
+  <div class="separator" aria-hidden="true"></div>
+
+  @for (p of presets; track p.label) {
+    <button
+      type="button"
+      class="preset-btn"
+      [class.active]="activePreset() === p.label"
+      (click)="applyPreset(p)"
+    >{{ p.label }}</button>
+  }
+
+  <div class="separator" aria-hidden="true"></div>
+
+  <label class="slider-label" for="rd-feed">
+    f
+    <input
+      id="rd-feed"
+      type="range"
+      min="0.010"
+      max="0.080"
+      step="0.001"
+      [value]="feedRate()"
+      (input)="onFeedChange($event)"
+    />
+    <span>{{ feedRate().toFixed(3) }}</span>
+  </label>
+
+  <label class="slider-label" for="rd-kill">
+    k
+    <input
+      id="rd-kill"
+      type="range"
+      min="0.040"
+      max="0.075"
+      step="0.001"
+      [value]="killRate()"
+      (input)="onKillChange($event)"
+    />
+    <span>{{ killRate().toFixed(3) }}</span>
+  </label>
+
+  <div class="separator" aria-hidden="true"></div>
+
+  <label class="slider-label" for="rd-speed">
+    Speed
+    <input
+      id="rd-speed"
+      type="range"
+      min="1"
+      max="20"
+      step="1"
+      [value]="stepsPerFrame()"
+      (input)="onSpeedChange($event)"
+    />
+    <span>{{ stepsPerFrame() }}x</span>
+  </label>
+</div>
+
+<app-info-panel heading="Reaction-Diffusion">
+  <p>First described by <strong>Peter Gray & Stephen K. Scott</strong> in 1984 (<em>Chemical Engineering Science</em>). The pattern possibilities were mapped by <strong>John Pearson</strong> in his landmark 1993 paper <em>"Complex Patterns in a Simple System."</em></p>
+  <p>Two chemicals U and V react and diffuse across a surface:</p>
+  <ul>
+    <li>U is continuously <strong>fed</strong> into the system (rate f)</li>
+    <li>U + 2V → 3V — V <strong>autocatalyzes</strong> its own production</li>
+    <li>V is <strong>killed</strong> at rate k</li>
+  </ul>
+  <p>The tension between these rates generates strikingly different patterns — spots, stripes, spirals, and mazes — from the same two equations. This connects directly to <strong>Alan Turing's 1952 theory of morphogenesis</strong>, which proposed that chemical gradients alone can explain animal coat patterns like leopard spots and zebra stripes.</p>
+</app-info-panel>

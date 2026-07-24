@@ -1,0 +1,118 @@
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1.25rem;
+  height: 3rem;
+  background: #0d0d1a;
+  border-bottom: 1px solid #2a2a4a;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: auto;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #8080b0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: none;
+
+  &:hover {
+    color: #cfcfe8;
+
+    .logo {
+      filter: drop-shadow(0 0 4px rgba(120, 210, 255, 0.7));
+    }
+  }
+
+  &:focus-visible {
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+}
+
+.logo {
+  flex-shrink: 0;
+  transition: filter 0.15s;
+}
+
+ul {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  height: 100%;
+  list-style: none;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  padding: 0 0.875rem;
+  height: 100%;
+  font-size: 0.875rem;
+  color: #a0a0c0;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+
+  &:hover {
+    color: #e0e0f0;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4f8ff7;
+    outline-offset: -2px;
+    border-radius: 3px;
+  }
+
+  &.active {
+    color: #e0e0f0;
+    border-bottom-color: #4f8ff7;
+  }
+}
+
+.github {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  margin-left: auto;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: auto;
+  padding: 0;
+  color: #a0a0c0;
+  border-bottom: none;
+
+  &:hover {
+    color: #e0e0f0;
+  }
+
+  &:focus-visible {
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+}
+
+.github-icon {
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.subtitle {
+  font-size: 0.6875rem;
+  color: #8080b0;
+  white-space: nowrap;
+}
